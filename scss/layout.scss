@@ -178,7 +178,7 @@ button {
 
 .footer {
   border-top: 1px solid #ccc;
-  padding: 30px;
+  padding: 5px;
   background-color: rgb(240, 240, 240);
 
   .upper {
@@ -194,16 +194,18 @@ button {
       display: flex;
       margin-bottom: 30px;
 
-      font-size: clamp(12px, 2.5vw, 14px);
+      font-size: clamp(14px, 2.7vw, 18px);
       li {
         margin-left: 10px;
+        margin-bottom: 10px;
         color: #999;
-        &:nth-child(1) {
+        span {
           color: #111;
           font-weight: 700;
         }
       }
     }
+
     .select {
       display: flex;
       text-align: center;
