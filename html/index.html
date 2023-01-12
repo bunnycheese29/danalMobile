@@ -108,7 +108,7 @@
           </li>
         </ul>
       </nav>
-      <a href="" class="link">결제내역 조회</a>
+      <a href="" class="link">결제내역조회</a>
       <button class="btn btn--all">
         <span></span>
         <span></span>
@@ -399,56 +399,70 @@
     </main>
 
     <script>
-      /*브라우저 상에 최상위는 window*/
-      // console.log(window);
-      // window.alert("아이디가 맞지 않습니다.");
-      // dom (document object model);
+      // const now = new Date();
+      // const day = now.getDay();
+      // console.log("🚀 ~ file: index.html:404 ~ day", day);
+
+      //[선언문] 반드시 이름을 붙여줘야 한다.
+      const btnAll = document.querySelector(".btn--all");
       const header = document.querySelector(".header");
-      const gnb = document.querySelector(".gnb");
-      gnb.addEventListener("mouseenter", function () {
-        //console.log("gnb에 마우스 올라감");
+      const depth01 = document.querySelectorAll(".gnb .gnb__list > li > a");
+      const depth02 = document.querySelectorAll(
+        ".gnb .gnb__list > li > .gnb__list--sub"
+      );
 
-        //header가 가지고 있는 클래스 리스트를 보여줌
-        header.classList.add("on");
-      });
-      gnb.addEventListener("mouseleave", function () {
-        header.classList.remove("on");
-      });
+      //if()
+      //배열의 개수 확인 가능
+      const total = depth01.length;
+      for (let i = 0; i < 6; i++) {
+        depth01[i].addEventListener("click", function (e) {
+          e.preventDefault();
+          // depth02[0].classList.remove("on");
+          // depth02[1].classList.remove("on");
+          // depth02[2].classList.remove("on");
+          // depth02[3].classList.remove("on");
+          // depth02[4].classList.remove("on");
+          // depth02[5].classList.remove("on");
+          for (let j = 0; j < total; j++) {
+            if (i !== j) {
+              depth02[j].classList.remove("on");
+            }
+          }
+          depth02[i].classList.toggle("on");
+        });
+        depth02[i].addEventListener("click", function (e) {
+          e.preventDefault();
+        });
+      }
 
-      //swiper js > API > module >
-      //swiper wraper의 부모 이름 적기
-      const swiper = new Swiper(".platform-swiper", {
-        //내가 정한 사진 넓이,높이에 자동으로 맞춰달라
-        slidesPerView: "auto",
-        spaceBetween: 50,
-        loop: true,
-        navigation: {
-          nextEl: ".platform-swiper .btn--next",
-          prevEl: ".platform-swiper .btn--prev",
-        },
-      });
+      //함수 옆에  ()는 매개변수, 내맘대로 정하기
+      //e를 붙여줌으로서 a태그에 있는 링크 기능을 막을 수 있다.
+      // depth01.addEventListener("click", function (e) {
+      //   //(1) 무조건 맨 위에 써야함, 막아주고 시작하기
+      //   e.preventDefault();
+      //   depth02.classList.toggle("on");
 
-      window.addEventListener("scroll", function () {
-        //로그 많이 찍힐 때 throuttle, debounce
-        console.log(window.scrollY);
-        if (window.scrollY > 0) {
-          header.classList.add("scroll");
-        } else {
+      //   //(2) 마지막에 return false 쓰기
+      //   // return false;
+      // });
+
+      //사용자가 세팅하는 센서 (클릭 이벤트를 지정)
+      btnAll.addEventListener("click", function () {
+        // console.log("클릭 햇음");
+        //header에 on을 붙여줌
+        const isContains = header.classList.contains("on");
+        if (isContains) {
           header.classList.remove("on");
-        }
-      });
-
-      var st_Scroll = 0;
-
-      window.scroll(function () {
-        if (st_Scroll < window.scrollTop()) {
-          ".header".css("top", -".header".outerHeight());
-          st_Scroll = window.scrollTop();
+          setTimeout(function () {
+            for (let i = 0; i < total; i++) {
+              depth02[i].classList.remove("on");
+            }
+          }, 250);
         } else {
-          ".header".css("top", 0);
-          st_Scroll = window.scrollTop();
+          header.classList.add("on");
         }
       });
+      // header.classList.toggle("on");
     </script>
   </body>
   <footer class="footer">
