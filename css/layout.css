@@ -98,6 +98,9 @@ button {
   transition: all 0.25s ease;
   background-color: #fff;
 }
+.header .gnb__list {
+  width: 100%;
+}
 .header .gnb__list > li > a {
   display: flex;
   align-items: center;

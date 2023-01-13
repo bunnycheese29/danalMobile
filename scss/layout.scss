@@ -109,6 +109,7 @@ button {
     transition: all 0.25s ease;
     background-color: #fff;
     &__list {
+      width: 100%;
       > li {
         > a {
           display: flex;
