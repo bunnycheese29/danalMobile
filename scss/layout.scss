@@ -104,6 +104,7 @@ button {
     height: 100%;
     //fixed 쓰면 넓이가 없어지니까 width 써줘야함
     position: fixed;
+    display: flex;
     left: 100%;
     transition: all 0.25s ease;
     background-color: #fff;

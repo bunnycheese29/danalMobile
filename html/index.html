@@ -370,6 +370,7 @@
                 <span class="sticker">FRANCHISE</span>
               </li>
             </ul>
+            <div class="pagination"></div>
             <button class="btn btn--prev"></button>
             <button class="btn btn--next"></button>
           </div>
@@ -463,6 +464,22 @@
         }
       });
       // header.classList.toggle("on");
+
+      new Swiper(".platform-swiper", {
+        //auto는 내가 정한 width에 따라 바뀜
+        slidesPerView: "auto",
+        spaceBetween: 20,
+        loop: true,
+        centeredSlides: true,
+        navigation: {
+          nextEl: ".platform-swiper .btn--next",
+          prevEl: ".platform-swiper .btn--prev",
+        },
+        pagination: {
+          el: ".platform-swiper .pagination",
+          type: "bullets",
+        },
+      });
     </script>
   </body>
   <footer class="footer">

@@ -4,7 +4,7 @@
 .container {
   width: 100%;
   margin: 0 auto;
-  padding: 0 30px;
+  padding: 0 20px;
   box-sizing: border-box;
 }
 .section {
@@ -50,8 +50,8 @@
   video {
     width: 100%;
     height: 100vh;
-    /*무조건 화면 꽉 차게 억지로 늘리기*/
     object-fit: cover;
+    // aspect-ratio: 9 / 16;
   }
   &__txt {
     font-size: clamp(36px, 7.5vw, 48px);
@@ -154,10 +154,12 @@
       display: flex;
       // 둘러싸기
       flex-wrap: wrap;
-      gap: 50px 0;
+      gap: 20px;
       li {
-        width: (100% / 3);
-        padding: 0 15px;
+        //gap이 20 20씩이니까 40을 빼줌
+        //%와 px 연산을 할 때 에러 뜨면 calc()를 쓰면 된다.
+        width: calc((100% - 40px) / 3);
+        padding: 0;
         box-sizing: border-box;
         text-align: center;
         img {
@@ -178,7 +180,7 @@
   .container {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    // justify-content: space-between;
     .title-box {
       h2 {
         white-space: nowrap;
@@ -195,18 +197,19 @@
       }
     }
     .contents {
-      width: 100%;
-      padding-top: 100px;
+      // width: 100%;
+      // padding-top: 100px;
       .block-chain__list {
         display: flex;
+        flex-direction: column;
         flex-wrap: wrap;
-        gap: 30px;
+        gap: 20px 0;
         > li {
-          width: calc(50% - 15px);
-          padding: 30px;
+          width: 100%;
+          padding: 20px;
           box-sizing: border-box;
           background-color: rgba(255, 255, 255, 0.1);
-          border-radius: 30px;
+          border-radius: 10px;
           box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.15);
           .title {
             display: flex;
@@ -214,9 +217,9 @@
             align-items: center;
             border-bottom: 1px solid #fff;
             padding-bottom: 20px;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
             h3 {
-              font-size: clamp(12px, 2.3vw, 14px);
+              font-size: clamp(18px, 2.6vw, 24px);
             }
             span {
               display: flex;
@@ -232,8 +235,9 @@
             display: none;
           }
           ul {
+            font-size: 14px;
             li {
-              margin-top: 20px;
+              margin-top: 10px;
               a {
                 display: block;
                 //무조건 한 줄로 만들어줌
@@ -255,15 +259,15 @@
             display: flex;
             align-items: center;
             &--main {
-              font-size: clamp(12px, 3vw, 20px);
+              font-size: clamp(18px, 4vw, 20px);
               font-weight: 900;
             }
             &--state {
               display: flex;
               align-items: center;
-              font-size: clamp(12px, 3vw, 20px);
+              font-size: clamp(18px, 3vw, 20px);
               .material-icons {
-                font-size: clamp(12px, 3vw, 20px);
+                font-size: clamp(18px, 3vw, 20px);
                 color: red;
               }
             }
@@ -288,10 +292,10 @@
       position: absolute;
       left: 0;
       //색칠 영역
-      width: 100px;
+      width: 80px;
       height: 100%;
-
-      bottom: -120px;
+      top: -50;
+      bottom: -50px;
       background-color: red;
       z-index: 2;
       background: rgb(255, 255, 255);
@@ -306,9 +310,9 @@
       display: block;
       position: absolute;
       right: 0;
-      width: 100px;
+      width: 80px;
       height: 100%;
-      bottom: -120px;
+      bottom: -50px;
       z-index: 2;
       background: rgb(255, 255, 255);
       background: linear-gradient(
@@ -327,10 +331,27 @@
   }
   .platform-swiper {
     position: relative;
+    .pagination {
+      display: flex;
+      justify-content: center;
+      margin-top: 30px;
+      .swiper-pagination-bullet {
+        width: 10px;
+        height: 10px;
+        border: 2px solid $blue;
+        background: none;
+        border-radius: 50px;
+        transition: all 0.25s ease;
+        &-active {
+          background-color: $blue;
+          width: 20px;
+        }
+      }
+    }
   }
   .platform-list {
     li {
-      width: 300px;
+      width: 200px;
       // 스티커의 기준! 부모!
       position: relative;
       &:hover {
@@ -340,8 +361,9 @@
         }
       }
       .img-box {
-        width: 200px;
-        height: 200px;
+        width: 100%;
+        //비율 지정하기 (높이, 넓이 둘중에 하나만 지정함)
+        aspect-ratio: 1 /1;
         overflow: hidden;
         border-radius: 50%;
         img {
@@ -356,18 +378,19 @@
         background-color: $blue;
         color: white;
         padding: 5px 10px;
-        font-size: 14px;
         border-radius: 100px;
         @include longShadow(20, darken($blue, 20));
         overflow: hidden;
-        top: 30px;
-        left: 40%;
+        font-size: 14px;
+        top: 25px;
+        left: 80%;
+        transform: translateX(-50%);
         white-space: nowrap;
       }
       .title {
         display: block;
         text-align: center;
-        font-size: 18px;
+        font-size: 17px;
         margin-top: 30px;
       }
     }
@@ -377,24 +400,29 @@
     width: 40px;
     height: 40px;
     background-color: #fff;
+    color: $blue;
     border-radius: 50%;
     border: 1px solid #ccc;
     z-index: 5;
     top: 50%;
     transform: translateY(-80%);
+    //화살표 중앙으로 보내기
+    display: flex;
+    align-items: center;
+    justify-content: center;
     &--prev {
-      left: 50px;
+      left: 0px;
       &:after {
         //디폴트가 마진 10이라서 0으로 리셋
         @include icon("chevron_left", 0);
-        font-size: 30px;
+        font-size: 24px;
       }
     }
     &--next {
-      right: 50px;
+      right: 0px;
       &:after {
         @include icon("chevron_right", 0);
-        font-size: 30px;
+        font-size: 24px;
       }
     }
   }
@@ -421,10 +449,7 @@
     flex-direction: column;
     .title-box {
       p {
-        margin-bottom: 100px;
-      }
-      a {
-        margin-bottom: 70px;
+        margin-bottom: 50px;
       }
       span {
         color: $blue;
@@ -436,14 +461,16 @@
   }
   .content {
     display: flex;
+    justify-content: ce;
     align-items: center;
-    width: 250px;
-    height: 250px;
+    width: 300px;
+    margin-top: 30px;
+
     img {
       width: 100%;
       object-fit: cover;
-      height: 100%;
-      border-radius: 60px;
+      aspect-ratio: 2/1;
+      border-radius: 20px;
     }
   }
 }
